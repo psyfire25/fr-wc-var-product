@@ -12,9 +12,9 @@ export default Image;
 
 const ImageContainer = styled.div`
   position: absolute;
-  top: 30vw;
-  left: 0;
-  width: 100%;
+  top: 0vw;
+  left: 14vw;
+  width: 60%;
   height: 30vh;
   padding: 10vw;
 `;

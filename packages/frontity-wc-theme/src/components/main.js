@@ -24,7 +24,7 @@ const Main = ({ state }) => {
 };
 export default connect(Main);
 
-const Wrapper = styled.dv`
+const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
 `;

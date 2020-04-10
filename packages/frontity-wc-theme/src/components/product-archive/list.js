@@ -3,14 +3,14 @@ import { connect, styled } from "frontity";
 import Item from "./list-item";
 import buttonImage from "../design/assets/button.svg";
 import { useSpring, a } from "react-spring";
-
 const ProductArchive = ({ state }) => {
   const data = state.source.get(state.router.link);
-  let leftPos = 15;
-  const springProps = useSpring({
-    left: `${leftPos}vw`,
-    from: { left: `${leftPos}vw` },
-  });
+  const leftPos = 15;
+  const springProps = (leftPos) =>
+    useSpring({
+      to: { transform: translateX(`${leftPos}vw`) },
+      from: { transform: translateX(`${leftPos}vw`) },
+    });
 
   return (
     <Store>
@@ -49,9 +49,7 @@ const ProductArchive = ({ state }) => {
 
 export default connect(ProductArchive);
 
-const ProductWrapper = styled.div`
-  display: flex;
-`;
+const ProductWrapper = styled.div``;
 
 const Store = styled.div`
   display: flex;

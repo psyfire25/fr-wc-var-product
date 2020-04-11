@@ -3,39 +3,68 @@ import { connect, styled } from "frontity";
 import Item from "./list-item";
 import buttonImage from "../design/assets/button.svg";
 import { useSpring, a } from "react-spring";
+
 const ProductArchive = ({ state }) => {
+  // const moveR = ({ pos }, val) => {
+  //   if (val >= -385) {
+  //     return;
+  //   } else {
+  //     val + 70;
+  //     return val;
+  //   }
+  // };
+  // let moveL = (val) => {
+  //   if (val <= -35) {
+  //     return;
+  //   } else {
+  //     val - 70;
+  //     return val;
+  //   }
+  // };
+  this.state = {
+    pos: -385,
+  };
   const data = state.source.get(state.router.link);
-  const leftPos = 15;
-  const springProps = (leftPos) =>
-    useSpring({
-      to: { transform: translateX(`${leftPos}vw`) },
-      from: { transform: translateX(`${leftPos}vw`) },
-    });
+  // const springProps = () =>
+  //   useSpring({
+  //     to: { transform: translateX(`${leftPos}vw`) },
+  //     from: { transform: translateX(`${leftPos}vw`) },
+  //   });
 
   return (
     <Store>
       <ButtonWrapper>
         <PrevButton
-          onClick={(leftPos) => {
-            leftPos + 100;
-            console.log("prev clicked");
-            console.log(leftPos);
+          onClick={() => {
+            console.log("prev Click");
+            console.log(pos);
+
+            if (pos <= -385) {
+              return;
+            } else {
+              this.state.pos + 70;
+            }
           }}
         >
           <img src={buttonImage} alt="Image alt" />
         </PrevButton>
         <NextButton
-          onClick={(leftPos) => {
-            leftPos - 100;
-            console.log("next clicked");
-            console.log(leftPos);
+          onClick={() => {
+            console.log("next Click");
+            console.log(pos);
+            if (pos >= -385) {
+              return;
+            } else {
+              pos - 70;
+              return pos;
+            }
           }}
         >
           <img className="nextBtn" src={buttonImage} alt="Image alt" />
         </NextButton>
       </ButtonWrapper>
-      <a.div style={springProps}>
-        <ProductWrapper>
+      <a.div>
+        <ProductWrapper style={{ transform: this.state.pos + "vw" }}>
           {data.items.map(({ type, id }) => {
             const item = state.source[type][id];
             return <Item key={item.id} item={item} />;
@@ -49,7 +78,10 @@ const ProductArchive = ({ state }) => {
 
 export default connect(ProductArchive);
 
-const ProductWrapper = styled.div``;
+const ProductWrapper = styled.div`
+  display: flex;
+  position: absolute;
+`;
 
 const Store = styled.div`
   display: flex;

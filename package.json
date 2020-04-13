@@ -22,7 +22,7 @@
     "@frontity/wp-source": "^1.5.0",
     "emotion-theming": "^10.0.27",
     "frontity": "^1.5.1",
-    "frontity-wc-theme": "file:packages/frontity-wc-theme",
+    "frontity-wc-theme": "./packages/frontity-wc-theme",
     "react-icons": "^3.9.0",
     "react-spring": "^8.0.27"
   }

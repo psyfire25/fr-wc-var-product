@@ -18,7 +18,6 @@
     "@emotion/styled": "^10.0.27",
     "@frontity/core": "^1.5.0",
     "@frontity/html2react": "^1.2.0",
-    "@frontity/mars-theme": "./packages/mars-theme",
     "@frontity/tiny-router": "^1.1.0",
     "@frontity/wp-source": "^1.5.0",
     "emotion-theming": "^10.0.27",

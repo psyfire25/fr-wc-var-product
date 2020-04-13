@@ -1,70 +1,39 @@
 import React from "react";
-import { connect, styled } from "frontity";
+import { connect, styled, useState} from "frontity";
 import Item from "./list-item";
 import buttonImage from "../design/assets/button.svg";
 import { useSpring, a } from "react-spring";
 
 const ProductArchive = ({ state }) => {
-  // const moveR = ({ pos }, val) => {
-  //   if (val >= -385) {
-  //     return;
-  //   } else {
-  //     val + 70;
-  //     return val;
-  //   }
-  // };
-  // let moveL = (val) => {
-  //   if (val <= -35) {
-  //     return;
-  //   } else {
-  //     val - 70;
-  //     return val;
-  //   }
-  // };
-  this.state = {
-    pos: -385,
-  };
   const data = state.source.get(state.router.link);
-  // const springProps = () =>
-  //   useSpring({
-  //     to: { transform: translateX(`${leftPos}vw`) },
-  //     from: { transform: translateX(`${leftPos}vw`) },
-  //   });
+  
+  const [style, setStyle] = useState({
+    transform: translateX(${pos})
+  });
+
+  const [pos, setPos] = useState({
+    let pos = 
+    setStyle({ ...style, transform: translateX`${x}%` });
+  });
+  const moveEProductWrapper = (val) => {
+    if (pos >= -385) {
+      let res = pos + val;
+      setPos({ ...style, transform: translateX(`${res}%`vw})
+    }
+  };
 
   return (
     <Store>
       <ButtonWrapper>
-        <PrevButton
-          onClick={() => {
-            console.log("prev Click");
-            console.log(pos);
-
-            if (pos <= -385) {
-              return;
-            } else {
-              this.state.pos + 70;
-            }
-          }}
-        >
+        <PrevButton onClick={moveEProductWrapper(70)}>
           <img src={buttonImage} alt="Image alt" />
         </PrevButton>
-        <NextButton
-          onClick={() => {
-            console.log("next Click");
-            console.log(pos);
-            if (pos >= -385) {
-              return;
-            } else {
-              pos - 70;
-              return pos;
-            }
-          }}
-        >
+        <NextButton onClick={moveEProductWrapper(-70)}>
           <img className="nextBtn" src={buttonImage} alt="Image alt" />
         </NextButton>
       </ButtonWrapper>
       <a.div>
-        <ProductWrapper style={{ transform: this.state.pos + "vw" }}>
+        <ProductWrapper id="pw">
           {data.items.map(({ type, id }) => {
             const item = state.source[type][id];
             return <Item key={item.id} item={item} />;
@@ -79,6 +48,7 @@ const ProductArchive = ({ state }) => {
 export default connect(ProductArchive);
 
 const ProductWrapper = styled.div`
+  transform: translateX(${pos}vw);
   display: flex;
   position: absolute;
 `;
